@@ -193,10 +193,10 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
     public void setRenderMode(TXSurfaceView view, int mode) {
         switch (mode) {
             case 0:
-                view.txyunVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
+                view.txyunVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION);
                 break;
             case 1:
-                view.txyunVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION);
+                view.txyunVodPlayer.setRenderMode(TXLiveConstants.RENDER_MODE_FULL_FILL_SCREEN);
                 break;
         }
     }
