@@ -253,10 +253,6 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                             map.putInt("bitrate", item.bitrate);
                             bitratesArray.pushMap(map);
                         }
-                        // 默认播放清晰度最低的
-                        if (!bitrates.isEmpty()) {
-                            view.txyunVodPlayer.setBitrateIndex(bitrates.get(0).index);
-                        }
                         event.putArray("bitrates", bitratesArray);
                         mEventEmitter.receiveEvent(view.getId(), RNTXplayerView.Events.BEGIN.toString(), event);
                         break;
