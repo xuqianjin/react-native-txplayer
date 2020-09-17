@@ -124,6 +124,11 @@
   [self.player setConfig:self.config];
 }
 
+- (void)setSelectBitrateIndex:(int)selectBitrateIndex{
+    _selectBitrateIndex = selectBitrateIndex;
+    [self.player setBitrateIndex:selectBitrateIndex];
+}
+
 #pragma mark - TXVodPlayListener
 - (void)onPlayEvent:(TXVodPlayer *)player event:(int)EvtID withParam:(NSDictionary *)param{
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -132,6 +137,22 @@
         if (self.onTXVodBegin) {
           self.onTXVodBegin(@{@"code":@"onTXVodBegin"});
         }
+        if (self.onTXVodBitrateReady) {
+              NSArray * bitrateArray = [self.player supportedBitrates];
+              NSMutableArray * trackArray = [NSMutableArray array];
+              for (NSInteger i=0; i<bitrateArray.count; i++) {
+                  TXBitrateItem * bitrate = bitrateArray[i];
+                  if (bitrate.bitrate>0) {
+                      [trackArray addObject:@{@"index":@(bitrate.index),
+                                              @"width":@(bitrate.width),
+                                              @"height":@(bitrate.height),
+                                              @"bitrate":@(bitrate.bitrate)
+                      }];
+                  }
+                  
+              }
+              self.onTXVodBitrateReady(@{@"bitrates":trackArray});
+          }
         break;
       case PLAY_EVT_PLAY_LOADING:
         if (self.onTXVodLoading) {
@@ -159,6 +180,20 @@
       case PLAY_EVT_PLAY_END:
         if (self.onTXVodEnd) {
           self.onTXVodEnd(@{@"code":@"onTXVodEnd"});
+        }
+        break;
+      case PLAY_EVT_CHANGE_RESOLUTION:
+        if (self.onTXVodBitrateChange) {
+            NSInteger bitrateIndex = self.player.bitrateIndex;
+            NSArray * bitrateArray = self.player.supportedBitrates;
+            if (bitrateArray.count>0) {
+                TXBitrateItem * bitrate = bitrateArray[bitrateIndex];
+                self.onTXVodBitrateChange(@{@"index":@(bitrateIndex),
+                                            @"width":@(bitrate.width),
+                                            @"height":@(bitrate.height)
+                                          });
+                
+            }
         }
         break;
       case PLAY_ERR_NET_DISCONNECT:
