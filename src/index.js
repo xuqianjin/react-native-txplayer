@@ -203,8 +203,7 @@ const Player = forwardRef(
             setLoading(false);
             setLoadingObj({});
           }}
-          onTXVodBegin={({ nativeEvent }) => {
-            setBitrateList(nativeEvent.bitrates);
+          onTXVodBegin={() => {
             setError(false);
             setLoading(false);
             setIsStopPlay(false);
@@ -228,6 +227,9 @@ const Player = forwardRef(
           onTXVodBitrateChange={({ nativeEvent }) => {
             setBitrateIndex(nativeEvent.index);
             onChangeBitrate(nativeEvent);
+          }}
+          onTXVodBitrateReady={({ nativeEvent }) => {
+            setBitrateList(nativeEvent.bitrates);
           }}
         >
           <StatusBar hidden={isFull} />

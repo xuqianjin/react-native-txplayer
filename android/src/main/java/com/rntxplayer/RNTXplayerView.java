@@ -46,7 +46,8 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
         ERROR("onTXVodError"),
         PREPARE("onTXVodPrepare"),
         BEGIN("onTXVodBegin"),
-        BITRATECHANGE("onTXVodBitrateChange");
+        BITRATECHANGE("onTXVodBitrateChange"),
+        BITRATEREADY("onTXVodBitrateReady");
 
         private final String mName;
 
@@ -254,10 +255,11 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                             bitratesArray.pushMap(map);
                         }
                         event.putArray("bitrates", bitratesArray);
-                        mEventEmitter.receiveEvent(view.getId(), RNTXplayerView.Events.BEGIN.toString(), event);
+                        mEventEmitter.receiveEvent(view.getId(), Events.BITRATEREADY.toString(), event);
+                        mEventEmitter.receiveEvent(view.getId(), Events.BEGIN.toString(), event);
                         break;
                     case TXLiveConstants.PLAY_EVT_PLAY_LOADING:
-                        mEventEmitter.receiveEvent(view.getId(), RNTXplayerView.Events.LOADING.toString(), event);
+                        mEventEmitter.receiveEvent(view.getId(), Events.LOADING.toString(), event);
                         break;
                     case TXLiveConstants.PLAY_EVT_VOD_LOADING_END:
                         mEventEmitter.receiveEvent(view.getId(), Events.LOADINGEND.toString(), event);
@@ -269,10 +271,10 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                         event.putInt("duration", param.getInt(TXLiveConstants.EVT_PLAY_DURATION));
                         event.putInt("progress", param.getInt(TXLiveConstants.EVT_PLAY_PROGRESS));
                         event.putInt("buffered", (int) (param.getInt(TXLiveConstants.EVT_PLAYABLE_DURATION_MS) / 1000));
-                        mEventEmitter.receiveEvent(view.getId(), RNTXplayerView.Events.PROGRESS.toString(), event);
+                        mEventEmitter.receiveEvent(view.getId(), Events.PROGRESS.toString(), event);
                         break;
                     case TXLiveConstants.PLAY_EVT_PLAY_END:
-                        mEventEmitter.receiveEvent(view.getId(), RNTXplayerView.Events.END.toString(), event);
+                        mEventEmitter.receiveEvent(view.getId(), Events.END.toString(), event);
                         break;
                     case TXLiveConstants.PLAY_EVT_CHANGE_RESOLUTION:
                         Log.i(TAG, "onPlayEvent: PLAY_EVT_CHANGE_RESOLUTION");
@@ -284,7 +286,7 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                         break;
                     case TXLiveConstants.PLAY_ERR_NET_DISCONNECT:
                         event.putString("message", "网络连接失败");
-                        mEventEmitter.receiveEvent(view.getId(), RNTXplayerView.Events.ERROR.toString(), event);
+                        mEventEmitter.receiveEvent(view.getId(), Events.ERROR.toString(), event);
                         break;
                     case TXLiveConstants.PLAY_ERR_GET_RTMP_ACC_URL_FAIL:
                     case TXLiveConstants.PLAY_ERR_FILE_NOT_FOUND:
@@ -292,7 +294,7 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                     case TXLiveConstants.PLAY_ERR_HLS_KEY:
                     case TXLiveConstants.PLAY_ERR_GET_PLAYINFO_FAIL:
                         event.putString("message", "播放异常");
-                        mEventEmitter.receiveEvent(view.getId(), RNTXplayerView.Events.ERROR.toString(), event);
+                        mEventEmitter.receiveEvent(view.getId(), Events.ERROR.toString(), event);
                         break;
                 }
             }

@@ -88,6 +88,7 @@ TXViewPlayer.propTypes = {
   onTXVodBegin: PropTypes.func, // 开始播放
   onTXVodPrepare: PropTypes.func, // 准备
   onTXVodBitrateChange: PropTypes.func, // 切换码率
+  onTXVodBitrateReady: PropTypes.func, // 获取码率回调
 };
 
 TXViewPlayer.defaultProps = {
