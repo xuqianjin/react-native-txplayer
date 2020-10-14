@@ -26,6 +26,8 @@ const Player = forwardRef(
       onCompletion,
       setAutoPlay,
       onChangeBitrate,
+      onProgress,
+      onPrepare,
       ...restProps
     },
     ref
@@ -191,6 +193,7 @@ const Player = forwardRef(
             }
             setCurrent(0);
             setBuffer(0);
+            onPrepare();
           }}
           onTXVodLoading={() => {
             setLoading(true);
@@ -214,6 +217,7 @@ const Player = forwardRef(
             setTotal(nativeEvent.duration);
             setCurrent(nativeEvent.progress);
             setBuffer(nativeEvent.buffered);
+            onProgress(nativeEvent);
           }}
           onTXVodEnd={() => {
             setIsComplate(true);
@@ -276,6 +280,8 @@ Player.propTypes = {
   enableCast: PropTypes.bool, // 是否显示投屏按钮
   onCastClick: PropTypes.func, // 投屏按钮点击事件
   onChangeBitrate: PropTypes.func, // 切换清晰度
+  onProgress: PropTypes.func, // 进度回调
+  onPrepare: PropTypes.func, // 播放准备回调
 };
 
 Player.defaultProps = {
@@ -283,6 +289,8 @@ Player.defaultProps = {
   onCompletion: () => {},
   onCastClick: () => {},
   onChangeBitrate: () => {},
+  onProgress: () => {},
+  onPrepare: () => {},
   themeColor: '#F85959',
   enableHardwareDecoder: false,
   setSpeed: 1.0,

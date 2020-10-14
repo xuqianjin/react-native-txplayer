@@ -237,6 +237,7 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                 }
                 switch (i) {
                     case TXLiveConstants.PLAY_EVT_PLAY_BEGIN:
+                        WritableMap readyevent = Arguments.createMap();
                         WritableArray bitratesArray = new WritableNativeArray();
                         ArrayList<TXBitrateItem> bitrates = view.txyunVodPlayer.getSupportedBitrates(); //获取多码率数组
                         // 排序,清晰度越低越靠前
@@ -254,8 +255,8 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                             map.putInt("bitrate", item.bitrate);
                             bitratesArray.pushMap(map);
                         }
-                        event.putArray("bitrates", bitratesArray);
-                        mEventEmitter.receiveEvent(view.getId(), Events.BITRATEREADY.toString(), event);
+                        readyevent.putArray("bitrates", bitratesArray);
+                        mEventEmitter.receiveEvent(view.getId(), Events.BITRATEREADY.toString(), readyevent);
                         mEventEmitter.receiveEvent(view.getId(), Events.BEGIN.toString(), event);
                         break;
                     case TXLiveConstants.PLAY_EVT_PLAY_LOADING:
