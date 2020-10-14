@@ -22,7 +22,7 @@
   if (!_config) {
     _config = [[TXVodPlayConfig alloc] init];
     //smoothSwitchBitrate必须是YES，否则可能播放没声音
-    _config.smoothSwitchBitrate = YES;
+    // _config.smoothSwitchBitrate = YES;
   }
   return _config;
 }
@@ -127,6 +127,12 @@
 - (void)setSelectBitrateIndex:(int)selectBitrateIndex{
     _selectBitrateIndex = selectBitrateIndex;
     [self.player setBitrateIndex:selectBitrateIndex];
+}
+
+- (void)setSetSmoothSwitchBitrate:(BOOL)setSmoothSwitchBitrate{
+    _setSmoothSwitchBitrate = setSmoothSwitchBitrate;
+    self.config.smoothSwitchBitrate =setSmoothSwitchBitrate;
+    [self.player setConfig:self.config];
 }
 
 #pragma mark - TXVodPlayListener
