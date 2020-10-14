@@ -23,6 +23,7 @@ RCT_EXPORT_VIEW_PROPERTY(setRotateMode, int)
 RCT_EXPORT_VIEW_PROPERTY(setRenderMode, int)
 RCT_EXPORT_VIEW_PROPERTY(configHeader, NSDictionary)
 RCT_EXPORT_VIEW_PROPERTY(selectBitrateIndex, int)
+RCT_EXPORT_VIEW_PROPERTY(setSmoothSwitchBitrate, BOOL)
 
 //暴露方法（原生调用，js回调）
 RCT_EXPORT_VIEW_PROPERTY(onTXVodLoading, RCTBubblingEventBlock)

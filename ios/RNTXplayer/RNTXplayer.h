@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) int  setRenderMode;
 @property(nonatomic,strong) NSDictionary * configHeader;
 @property(nonatomic,assign) int  selectBitrateIndex;
+@property(nonatomic,assign) BOOL  setSmoothSwitchBitrate;
 
 //定义要暴露的事件
 @property (nonatomic, copy) RCTBubblingEventBlock onTXVodLoading;
