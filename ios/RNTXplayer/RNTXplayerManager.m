@@ -22,6 +22,7 @@ RCT_EXPORT_VIEW_PROPERTY(setMirrorMode, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(setRotateMode, int)
 RCT_EXPORT_VIEW_PROPERTY(setRenderMode, int)
 RCT_EXPORT_VIEW_PROPERTY(configHeader, NSDictionary)
+RCT_EXPORT_VIEW_PROPERTY(selectBitrateIndex, int)
 
 //暴露方法（原生调用，js回调）
 RCT_EXPORT_VIEW_PROPERTY(onTXVodLoading, RCTBubblingEventBlock)
@@ -31,7 +32,8 @@ RCT_EXPORT_VIEW_PROPERTY(onTXVodEnd, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTXVodError, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTXVodBegin, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onTXVodPrepare, RCTBubblingEventBlock)
-
+RCT_EXPORT_VIEW_PROPERTY(onTXVodBitrateReady, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onTXVodBitrateChange, RCTBubblingEventBlock)
 
 //暴露方法（js调用，原生回调）
 RCT_EXPORT_METHOD(startPlay:(nonnull NSNumber *) reactTag){

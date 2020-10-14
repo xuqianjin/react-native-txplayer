@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign) int  setRotateMode;
 @property(nonatomic,assign) int  setRenderMode;
 @property(nonatomic,strong) NSDictionary * configHeader;
+@property(nonatomic,assign) int  selectBitrateIndex;
 
 //定义要暴露的事件
 @property (nonatomic, copy) RCTBubblingEventBlock onTXVodLoading;
@@ -38,7 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) RCTBubblingEventBlock onTXVodError;
 @property (nonatomic, copy) RCTBubblingEventBlock onTXVodBegin;
 @property (nonatomic, copy) RCTBubblingEventBlock onTXVodPrepare;
-
+@property (nonatomic, copy) RCTBubblingEventBlock onTXVodBitrateReady;
+@property (nonatomic, copy) RCTBubblingEventBlock onTXVodBitrateChange;
 
 -(void)startPlay;
 -(void)pausePlay;
