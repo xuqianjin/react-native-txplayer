@@ -221,8 +221,12 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
         view.txyunVodPlayer.setBitrateIndex(bitrateIndex);
     }
 
+    @ReactProp(name = "setSmoothSwitchBitrate")
+    public void setSmoothSwitchBitrate(TXSurfaceView view, boolean mode) {
+        mConfig.setSmoothSwitchBitrate(mode);
+    }
+
     private void initConfig(final TXSurfaceView view) {
-        mConfig.setSmoothSwitchBitrate(true);
         view.txyunVodPlayer.setConfig(mConfig);
     }
 

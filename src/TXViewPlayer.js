@@ -79,6 +79,7 @@ TXViewPlayer.propTypes = {
   setRenderMode: PropTypes.oneOf([0, 1]), // 设置画面缩放模式 0:自适应; 1:平铺;
   configHeader: PropTypes.object, // 配置自定义header
   selectBitrateIndex: PropTypes.number, // 设置码率切换
+  setSmoothSwitchBitrate: PropTypes.bool, // 平滑切换码率
 
   onTXVodLoading: PropTypes.func, // 缓冲开始。
   onTXVodLoadingEnd: PropTypes.func, // 缓冲结束
@@ -94,6 +95,7 @@ TXViewPlayer.propTypes = {
 TXViewPlayer.defaultProps = {
   setAutoPlay: false,
   setRenderMode: 0,
+  setSmoothSwitchBitrate: false,
 };
 
 const RCTVideo = requireNativeComponent('RNTXplayer');
