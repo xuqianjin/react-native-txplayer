@@ -41,7 +41,6 @@ const Player = forwardRef(
     const [isComplate, setIsComplate] = useState(false);
     const [isStopPlay, setIsStopPlay] = useState(false);
     const [isPlaying, setIsPlaying] = useState(setAutoPlay);
-    const [loadingObj, setLoadingObj] = useState({});
     const [total, setTotal] = useState(0);
     const [current, setCurrent] = useState(0);
     const [buffer, setBuffer] = useState(0);
@@ -95,7 +94,6 @@ const Player = forwardRef(
     const changeSource = (src) => {
       setPlaySource(src);
       setLoading(true);
-      setLoadingObj({});
       setError(false);
     };
 
@@ -149,6 +147,7 @@ const Player = forwardRef(
     };
 
     const handleChangeBitrate = (newIndex) => {
+      setLoading(true);
       setBitrateIndex(newIndex);
     };
 
@@ -197,14 +196,9 @@ const Player = forwardRef(
           }}
           onTXVodLoading={() => {
             setLoading(true);
-            setLoadingObj({});
-          }}
-          onAliLoadingProgress={({ nativeEvent }) => {
-            setLoadingObj(nativeEvent);
           }}
           onTXVodLoadingEnd={() => {
             setLoading(false);
-            setLoadingObj({});
           }}
           onTXVodBegin={() => {
             setError(false);
@@ -250,7 +244,7 @@ const Player = forwardRef(
             isLoading={loading}
             errorObj={errorObj}
             isPlaying={isPlaying}
-            loadingObj={loadingObj}
+            loadingObj={{}}
             themeColor={themeColor}
             playSource={playSource}
             bitrateList={bitrateList}
