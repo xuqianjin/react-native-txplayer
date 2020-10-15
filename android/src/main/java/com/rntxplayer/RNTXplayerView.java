@@ -244,13 +244,6 @@ public class RNTXplayerView extends ViewGroupManager<TXSurfaceView> {
                         WritableMap readyevent = Arguments.createMap();
                         WritableArray bitratesArray = new WritableNativeArray();
                         ArrayList<TXBitrateItem> bitrates = view.txyunVodPlayer.getSupportedBitrates(); //获取多码率数组
-                        // 排序,清晰度越低越靠前
-                        Collections.sort(bitrates, new Comparator<TXBitrateItem>() {
-                            @Override
-                            public int compare(TXBitrateItem t1, TXBitrateItem t2) {
-                                return t1.bitrate - t2.bitrate;
-                            }
-                        });
                         for (TXBitrateItem item : bitrates) {
                             WritableMap map = new WritableNativeMap();
                             map.putInt("index", item.index);
